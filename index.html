@@ -3,19 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eraz Global Solutions</title>
+  <title data-translate="title">Eraz Global Solutions</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       background-color: #f5f7fa;
       color: #333;
       line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    /* Dark mode styles */
+    body.dark {
+      background-color: #1e1e1e;
+      color: #ddd;
+    }
+    body.dark header::before {
+      background: rgba(26, 115, 232, 0.8);
+    }
+    body.dark nav {
+      background-color: #333;
+    }
+    body.dark nav ul li a {
+      color: #ddd;
+    }
+    body.dark nav ul li a:hover {
+      color: #1a73e8;
+    }
+    body.dark .card {
+      background: #2b2b2b;
+      color: #ddd;
+    }
+    body.dark footer {
+      background-color: #333;
+      color: #ddd;
     }
     /* Header hero avec image de fond et overlay */
     header {
@@ -31,10 +55,7 @@
     header::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(26, 115, 232, 0.6);
     }
     header img {
@@ -47,9 +68,7 @@
       z-index: 2;
       transition: transform 0.3s;
     }
-    header img:hover {
-      transform: scale(1.1);
-    }
+    header img:hover { transform: scale(1.1); }
     header h1 {
       position: relative;
       font-size: 3em;
@@ -79,25 +98,84 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      transition: background-color 0.3s;
     }
     nav ul {
       list-style: none;
       display: flex;
-      justify-content: center;
-      padding: 10px 0;
+      padding: 0;
       margin: 0;
     }
-    nav ul li {
-      margin: 0 15px;
-    }
+    nav ul li { margin: 0 15px; }
     nav ul li a {
       text-decoration: none;
       color: #333;
       font-weight: 600;
       transition: color 0.3s;
     }
-    nav ul li a:hover {
-      color: #1a73e8;
+    nav ul li a:hover { color: #1a73e8; }
+    /* Controles : dropdown de langue et dark mode */
+    .controls {
+      display: flex;
+      gap: 10px;
+      position: relative;
+    }
+    /* Dropdown langue */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropbtn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dropbtn:hover {
+      background: #1558b0;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #fff;
+      min-width: 80px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 200;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+      transition: background 0.3s;
+    }
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+    /* Bouton dark mode */
+    #dark-mode-toggle {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    #dark-mode-toggle:hover {
+      background: #1558b0;
     }
     /* Contenu principal */
     .container {
@@ -111,7 +189,9 @@
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: background 0.3s, color 0.3s;
     }
+    body.dark section { background: #2b2b2b; }
     section h2 {
       margin-top: 0;
       color: #1a73e8;
@@ -131,7 +211,7 @@
       border-radius: 8px;
       padding: 20px;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
     }
     .card:hover {
       transform: translateY(-5px);
@@ -147,10 +227,8 @@
       border-radius: 5px;
       transition: background 0.3s;
     }
-    .card a:hover {
-      background: #1558b0;
-    }
-    /* Footer enrichi */
+    .card a:hover { background: #1558b0; }
+    /* Footer */
     footer {
       background-color: #333;
       color: #fff;
@@ -167,72 +245,80 @@
       font-size: 1.5em;
       transition: color 0.3s;
     }
-    footer .social a:hover {
-      color: #1a73e8;
-    }
+    footer .social a:hover { color: #1a73e8; }
     footer p {
       margin: 10px 0 0;
       font-size: 0.9em;
     }
     /* Responsive */
     @media (max-width: 768px) {
-      header {
-        height: 300px;
-      }
+      header { height: 300px; }
       header img {
         position: static;
         display: block;
         margin: 0 auto 20px;
       }
-      nav ul {
+      nav {
         flex-direction: column;
       }
-      nav ul li {
-        margin: 10px 0;
-      }
+      nav ul { flex-direction: column; }
+      nav ul li { margin: 10px 0; }
+      .controls { flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo Eraz Globale Solution">
-    <h1>Eraz Globale Solution</h1>
-    <p>Votre partenaire pour des solutions globales</p>
+    <img src="logo.png" alt="Logo Eraz Global Solution">
+    <h1 data-translate="header-title">Eraz Global Solutions</h1>
+    <p data-translate="header-subtitle">Votre partenaire pour des solutions globales</p>
   </header>
   
   <nav>
     <ul>
-      <li><a href="#presentation">Présentation</a></li>
-      <li><a href="#entreprises">Entreprises Affiliées</a></li>
+      <li><a href="#presentation" data-translate="menu-presentation">Présentation</a></li>
+      <li><a href="#entreprises" data-translate="menu-affiliated">Entreprises Affiliées</a></li>
     </ul>
+    <!-- Contrôles : dropdown de langue et dark mode -->
+    <div class="controls">
+      <div class="dropdown">
+        <button class="dropbtn" id="lang-btn">FR</button>
+        <div class="dropdown-content" id="lang-dropdown">
+          <a href="#" data-lang="fr">FR</a>
+          <a href="#" data-lang="en">EN</a>
+          <a href="#" data-lang="nl">NL</a>
+        </div>
+      </div>
+      <button id="dark-mode-toggle" data-translate-dark="dark-mode-on">Dark Mode</button>
+    </div>
   </nav>
   
   <div class="container">
     <section id="presentation">
-      <h2>Présentation de la Compagnie</h2>
-      <p>
+      <h2 data-translate="presentation-title">Présentation de la Compagnie</h2>
+      <p data-translate="presentation-text">
         Eraz Global Solutions est une entreprise leader dans le domaine des solutions globales.
         Nous offrons des services et des technologies innovantes pour répondre aux besoins de nos clients à l'international.
       </p>
     </section>
     
     <section id="entreprises">
-      <h2>Entreprises Affiliées</h2>
+      <h2 data-translate="affiliated-title">Entreprises Affiliées</h2>
       <div class="cards">
         <div class="card">
           <h3>BugHunter IA</h3>
-          <p>Un vérificateur de code html.</p>
-          <a href="http://www.bughunterai.eraz.ovh" target="_blank">Visiter le site</a>
+          <p data-translate="card1-desc">Un vérificateur de code html.</p>
+          <a href="http://www.bughunterai.eraz.ovh" target="_blank" data-translate="card1-link">Visiter le site</a>
         </div>
         <div class="card">
           <h3>Eraz Web</h3>
-          <p>Une cryptomonai centraliser.</p>
-          <a href="" target="_blank">Indisponible pour le moment.</a>
+          <p data-translate="card2-desc">Une cryptomonai centraliser.</p>
+          <a href="#" target="_blank" data-translate="card2-link">Indisponible pour le moment.</a>
         </div>
         <div class="card">
           <h3>Nexus Social</h3>
-          <p>Un réseau social étique.</p>
-          <a href="http://www.nexus.eraz.ovh" target="_blank">Visiter le site</a>
+          <p data-translate="card3-desc">Un réseau social étique.</p>
+          <a href="http://www.nexus.eraz.ovh" target="_blank" data-translate="card3-link">Visiter le site</a>
         </div>
       </div>
     </section>
@@ -242,7 +328,132 @@
     <div class="social">
       <a href="https://huggingface.co/ErazGlobaleSolution" target="_blank">Hugging Face</a>
     </div>
-    <p>&copy; 2025 Eraz Global Solutions. Tous droits réservés.</p>
+    <p data-translate="footer-copy">&copy; 2025 Eraz Global Solutions. Tous droits réservés.</p>
   </footer>
+  
+  <script>
+    // Dictionnaire de traductions incluant les textes pour le dark mode
+    const translations = {
+      fr: {
+        "title": "Eraz Global Solutions",
+        "header-title": "Eraz Global Solutions",
+        "header-subtitle": "Votre partenaire pour des solutions globales",
+        "menu-presentation": "Présentation",
+        "menu-affiliated": "Entreprises Affiliées",
+        "presentation-title": "Présentation de la Compagnie",
+        "presentation-text": "Eraz Global Solutions est une entreprise leader dans le domaine des solutions globales. Nous offrons des services et des technologies innovantes pour répondre aux besoins de nos clients à l'international.",
+        "affiliated-title": "Entreprises Affiliées",
+        "card1-desc": "Un vérificateur de code html.",
+        "card1-link": "Visiter le site",
+        "card2-desc": "Une cryptomonai centraliser.",
+        "card2-link": "Indisponible pour le moment.",
+        "card3-desc": "Un réseau social étique.",
+        "card3-link": "Visiter le site",
+        "footer-copy": "&copy; 2025 Eraz Global Solutions. Tous droits réservés.",
+        "dark-mode-on": "Mode Sombre",
+        "dark-mode-off": "Mode Clair"
+      },
+      en: {
+        "title": "Eraz Global Solutions",
+        "header-title": "Eraz Global Solutions",
+        "header-subtitle": "Your partner for global solutions",
+        "menu-presentation": "About Us",
+        "menu-affiliated": "Affiliated Companies",
+        "presentation-title": "Company Overview",
+        "presentation-text": "Eraz Global Solutions is a leading company in the field of global solutions. We offer innovative services and technologies to meet our international clients' needs.",
+        "affiliated-title": "Affiliated Companies",
+        "card1-desc": "An HTML code verifier.",
+        "card1-link": "Visit Website",
+        "card2-desc": "A centralized cryptocurrency.",
+        "card2-link": "Currently unavailable.",
+        "card3-desc": "An ethical social network.",
+        "card3-link": "Visit Website",
+        "footer-copy": "&copy; 2025 Eraz Global Solutions. All rights reserved.",
+        "dark-mode-on": "Dark Mode",
+        "dark-mode-off": "Light Mode"
+      },
+      nl: {
+        "title": "Eraz Global Solutions",
+        "header-title": "Eraz Global Solutions",
+        "header-subtitle": "Uw partner voor wereldwijde oplossingen",
+        "menu-presentation": "Over ons",
+        "menu-affiliated": "Gelieerde bedrijven",
+        "presentation-title": "Bedrijfsprofiel",
+        "presentation-text": "Eraz Global Solutions is een toonaangevend bedrijf op het gebied van wereldwijde oplossingen. Wij bieden innovatieve diensten en technologieën om te voldoen aan de behoeften van onze internationale klanten.",
+        "affiliated-title": "Gelieerde bedrijven",
+        "card1-desc": "Een HTML-code verifier.",
+        "card1-link": "Bezoek de site",
+        "card2-desc": "Een gecentraliseerde cryptocurrency.",
+        "card2-link": "Momenteel niet beschikbaar.",
+        "card3-desc": "Een ethisch sociaal netwerk.",
+        "card3-link": "Bezoek de site",
+        "footer-copy": "&copy; 2025 Eraz Global Solutions. Alle rechten voorbehouden.",
+        "dark-mode-on": "Donkere modus",
+        "dark-mode-off": "Lichte modus"
+      }
+    };
+
+    let currentLang = 'fr';
+
+    // Fonction pour changer la langue
+    function changeLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      // Met à jour l'attribut lang de la balise HTML
+      document.documentElement.lang = lang;
+      // Mise à jour du texte du bouton de langue (affiche l'abréviation)
+      document.getElementById('lang-btn').textContent = lang.toUpperCase();
+      // Actualise le texte du bouton dark mode selon l'état actuel
+      updateDarkModeButton();
+    }
+
+    // Gestion du dropdown de langue
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.getElementById('lang-dropdown');
+
+    langBtn.addEventListener('click', () => {
+      langDropdown.style.display = langDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Sélection d'une langue dans le dropdown
+    langDropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        changeLanguage(link.getAttribute('data-lang'));
+        langDropdown.style.display = 'none';
+      });
+    });
+
+    // Ferme le dropdown si l'utilisateur clique en dehors
+    window.addEventListener('click', (e) => {
+      if (!e.target.matches('#lang-btn')) {
+        langDropdown.style.display = 'none';
+      }
+    });
+
+    // Fonction pour mettre à jour le texte du bouton dark mode
+    function updateDarkModeButton() {
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      if (document.body.classList.contains('dark')) {
+        darkModeToggle.textContent = translations[currentLang]["dark-mode-off"];
+      } else {
+        darkModeToggle.textContent = translations[currentLang]["dark-mode-on"];
+      }
+    }
+
+    // Gestion du dark mode
+    document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      updateDarkModeButton();
+    });
+
+    // Initialisation par défaut
+    changeLanguage(currentLang);
+  </script>
 </body>
 </html>
