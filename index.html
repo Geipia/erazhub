@@ -3,13 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-translate="title">eraz-groupe</title>
+  <title data-translate="title">raz-Groupe</title>
+  <meta name="description" content="raz-Groupe, votre partenaire pour des solutions globales.">
+  <meta name="keywords" content="raz-Groupe, solutions globales, technologie, innovation">
+  <meta property="og:title" content="raz-Groupe">
+  <meta property="og:description" content="raz-Groupe, votre partenaire pour des solutions globales.">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8168712005472560"
      crossorigin="anonymous"></script>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    :root {
+      --accent-color: #1a73e8;
+    }
+    /* Loader styles */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #loader .spinner {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid var(--accent-color);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Back-to-top button */
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      z-index: 1000;
+      transition: opacity 0.3s;
+    }
+    #back-to-top:hover {
+      filter: brightness(0.9);
+    }
+    /* CSS reset et styles communs */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -19,7 +77,7 @@
       line-height: 1.6;
       transition: background-color 0.3s, color 0.3s;
     }
-    /* Dark mode styles */
+    /* Dark mode */
     body.dark {
       background-color: #1e1e1e;
       color: #ddd;
@@ -34,7 +92,7 @@
       color: #ddd;
     }
     body.dark nav ul li a:hover {
-      color: #1a73e8;
+      color: var(--accent-color);
     }
     body.dark .card {
       background: #2b2b2b;
@@ -44,7 +102,7 @@
       background-color: #333;
       color: #ddd;
     }
-    /* Header hero avec image de fond et overlay */
+    /* Header avec image de fond et overlay */
     header {
       position: relative;
       background: url('header-bg.jpg') no-repeat center center/cover;
@@ -105,7 +163,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      transition: background-color 0.3s;
+    }
+    /* Bouton menu mobile */
+    #menu-toggle {
+      display: none;
+      font-size: 1.5em;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
     nav ul {
       list-style: none;
@@ -120,14 +185,14 @@
       font-weight: 600;
       transition: color 0.3s;
     }
-    nav ul li a:hover { color: #1a73e8; }
-    /* Contrôles : dropdown de langue et dark mode */
+    nav ul li a:hover { color: var(--accent-color); }
+    /* Contrôles (dropdown langue et dark mode) */
     .controls {
       display: flex;
       gap: 10px;
       position: relative;
+      align-items: center;
     }
-    /* Dropdown langue */
     .dropdown {
       position: relative;
       display: inline-block;
@@ -136,14 +201,14 @@
       padding: 5px 10px;
       border: none;
       border-radius: 5px;
-      background: #1a73e8;
+      background: var(--accent-color);
       color: #fff;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: filter 0.3s;
     }
     .dropbtn:hover {
-      background: #1558b0;
+      filter: brightness(0.9);
     }
     .dropdown-content {
       display: none;
@@ -172,16 +237,16 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      background: #1a73e8;
+      background: var(--accent-color);
       color: #fff;
       font-weight: 600;
-      transition: background 0.3s;
+      transition: filter 0.3s;
     }
     #dark-mode-toggle:hover {
-      background: #1558b0;
+      filter: brightness(0.9);
     }
     /* Contenu principal */
-    .container {
+    main {
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
@@ -197,8 +262,8 @@
     body.dark section { background: #2b2b2b; }
     section h2 {
       margin-top: 0;
-      color: #1a73e8;
-      border-bottom: 2px solid #1a73e8;
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
       display: inline-block;
       padding-bottom: 5px;
     }
@@ -225,12 +290,12 @@
       margin-top: 15px;
       text-decoration: none;
       color: #fff;
-      background: #1a73e8;
+      background: var(--accent-color);
       padding: 10px 15px;
       border-radius: 5px;
-      transition: background 0.3s;
+      transition: filter 0.3s;
     }
-    .card a:hover { background: #1558b0; }
+    .card a:hover { filter: brightness(0.9); }
     /* Footer */
     footer {
       background-color: #333;
@@ -246,61 +311,68 @@
       margin: 0 10px;
       text-decoration: none;
       font-size: 1.5em;
-      transition: color 0.3s;
+      transition: filter 0.3s;
     }
-    footer .social a:hover { color: #1a73e8; }
+    footer .social a:hover { filter: brightness(0.9); }
     footer p {
       margin: 10px 0 0;
       font-size: 0.9em;
     }
     /* Responsive */
     @media (max-width: 768px) {
-      header { height: 300px; }
-      header img {
-        position: static;
+      #menu-toggle {
         display: block;
-        margin: 0 auto 20px;
       }
-      nav {
+      nav ul {
+        display: none;
         flex-direction: column;
+        width: 100%;
       }
-      nav ul { flex-direction: column; }
-      nav ul li { margin: 10px 0; }
+      nav ul.active {
+        display: flex;
+      }
+      nav ul li {
+        margin: 10px 0;
+      }
       .controls { flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
 <body>
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+  <button id="back-to-top" aria-label="Retour en haut" title="Retour en haut">↑</button>
   <header>
-    <img src="logo.png" alt="Logo eraz-groupe">
-    <h1 data-translate="header-title">eraz-groupe</h1>
+    <img src="logo.png" alt="Logo raz-Groupe" loading="lazy">
+    <h1 data-translate="header-title">raz-Groupe</h1>
     <p data-translate="header-subtitle">Votre partenaire pour des solutions globales</p>
   </header>
   
-  <nav>
+  <nav role="navigation">
+    <button id="menu-toggle" aria-label="Ouvrir le menu">☰</button>
     <ul>
       <li><a href="#presentation" data-translate="menu-presentation">Présentation</a></li>
       <li><a href="#entreprises" data-translate="menu-affiliated">Entreprises Affiliées</a></li>
     </ul>
-    <!-- Contrôles : dropdown de langue et dark mode -->
     <div class="controls">
-      <div class="dropdown">
-        <button class="dropbtn" id="lang-btn">FR</button>
+      <div class="dropdown" aria-label="Sélection de la langue">
+        <button class="dropbtn" id="lang-btn" aria-haspopup="true" aria-expanded="false" title="Choisir la langue">FR</button>
         <div class="dropdown-content" id="lang-dropdown">
           <a href="#" data-lang="fr">FR</a>
           <a href="#" data-lang="en">EN</a>
           <a href="#" data-lang="nl">NL</a>
         </div>
       </div>
-      <button id="dark-mode-toggle" data-translate-dark="dark-mode-on">Dark Mode</button>
+      <button id="dark-mode-toggle" aria-label="Basculer en mode sombre" data-translate-dark="dark-mode-on" title="Basculer en mode sombre">Dark Mode</button>
     </div>
   </nav>
   
-  <div class="container">
+  <main>
     <section id="presentation">
       <h2 data-translate="presentation-title">Présentation de la Compagnie</h2>
       <p data-translate="presentation-text">
-        eraz-groupe est une entreprise leader dans le domaine des solutions globales.
+        raz-Groupe est une entreprise leader dans le domaine des solutions globales.
         Nous offrons des services et des technologies innovantes pour répondre aux besoins de nos clients à l'international.
       </p>
     </section>
@@ -315,12 +387,12 @@
         </div>
         <div class="card">
           <h3>Eraz Web</h3>
-          <p data-translate="card2-desc">Une cryptomonai centraliser.</p>
+          <p data-translate="card2-desc">Une cryptomonnaie centralisée.</p>
           <a href="#" target="_blank" data-translate="card2-link">Indisponible pour le moment.</a>
         </div>
         <div class="card">
           <h3>Nexus Social</h3>
-          <p data-translate="card3-desc">Un réseau social étique.</p>
+          <p data-translate="card3-desc">Un réseau social éthique.</p>
           <a href="#" target="_blank" data-translate="card3-link">Indisponible pour le moment.</a>
         </div>
         <div class="card">
@@ -340,32 +412,54 @@
         </div>
       </div>
     </section>
-  </div>
+  </main>
   
   <footer>
     <div class="social">
       <a href="https://huggingface.co/ErazGlobaleSolution" target="_blank">Hugging Face</a>
     </div>
-    <p data-translate="footer-copy">&copy; 2025 eraz-groupe. Tous droits réservés.</p>
+    <p data-translate="footer-copy">&copy; 2025 raz-Groupe. Tous droits réservés.</p>
   </footer>
   
   <script>
-    // Dictionnaire de traductions incluant les textes pour le dark mode et toutes les cartes
+    // Loader removal on window load
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    });
+
+    // Back-to-top button functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.style.display = 'flex';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Dictionnaire des traductions
     const translations = {
       fr: {
-        "title": "Eraz-Groupe",
-        "header-title": "Eraz-Groupe",
+        "title": "raz-Groupe",
+        "header-title": "raz-Groupe",
         "header-subtitle": "Votre partenaire pour des solutions globales",
         "menu-presentation": "Présentation",
         "menu-affiliated": "Entreprises Affiliées",
         "presentation-title": "Présentation de la Compagnie",
-        "presentation-text": "eraz-groupe est une entreprise leader dans le domaine des solutions globales. Nous offrons des services et des technologies innovantes pour répondre aux besoins de nos clients à l'international.",
+        "presentation-text": "raz-Groupe est une entreprise leader dans le domaine des solutions globales. Nous offrons des services et des technologies innovantes pour répondre aux besoins de nos clients à l'international.",
         "affiliated-title": "Entreprises Affiliées",
         "card1-desc": "Un vérificateur de code html.",
         "card1-link": "Visiter le site",
-        "card2-desc": "Une cryptomonai centraliser.",
+        "card2-desc": "Une cryptomonnaie centralisée.",
         "card2-link": "Indisponible pour le moment.",
-        "card3-desc": "Un réseau social étique.",
+        "card3-desc": "Un réseau social éthique.",
         "card3-link": "Indisponible pour le moment.",
         "card4-desc": "Un navigateur éthique.",
         "card4-link": "Visiter le site",
@@ -373,18 +467,18 @@
         "card5-link": "Visiter le site",
         "card6-desc": "Un convertisseur de Markdown en HTML.",
         "card6-link": "Visiter le site",
-        "footer-copy": "&copy; 2025 eraz-groupe. Tous droits réservés.",
+        "footer-copy": "&copy; 2025 raz-Groupe. Tous droits réservés.",
         "dark-mode-on": "Mode Sombre",
         "dark-mode-off": "Mode Clair"
       },
       en: {
-        "title": "Eraz-Groupe",
-        "header-title": "Eraz-Groupe",
+        "title": "raz-Groupe",
+        "header-title": "raz-Groupe",
         "header-subtitle": "Your partner for global solutions",
         "menu-presentation": "About Us",
         "menu-affiliated": "Affiliated Companies",
         "presentation-title": "Company Overview",
-        "presentation-text": "eraz-groupe is a leading company in the field of global solutions. We offer innovative services and technologies to meet our international clients' needs.",
+        "presentation-text": "raz-Groupe is a leading company in the field of global solutions. We offer innovative services and technologies to meet our international clients' needs.",
         "affiliated-title": "Affiliated Companies",
         "card1-desc": "An HTML code verifier.",
         "card1-link": "Visit Website",
@@ -398,18 +492,18 @@
         "card5-link": "Visit Website",
         "card6-desc": "A Markdown to HTML converter.",
         "card6-link": "Visit Website",
-        "footer-copy": "&copy; 2025 eraz-groupe. All rights reserved.",
+        "footer-copy": "&copy; 2025 raz-Groupe. All rights reserved.",
         "dark-mode-on": "Dark Mode",
         "dark-mode-off": "Light Mode"
       },
       nl: {
-        "title": "Eraz-Groupe",
-        "header-title": "Eraz-Groupe",
+        "title": "raz-Groupe",
+        "header-title": "raz-Groupe",
         "header-subtitle": "Uw partner voor wereldwijde oplossingen",
         "menu-presentation": "Over ons",
         "menu-affiliated": "Gelieerde bedrijven",
         "presentation-title": "Bedrijfsprofiel",
-        "presentation-text": "eraz-groupe is een toonaangevend bedrijf op het gebied van wereldwijde oplossingen. Wij bieden innovatieve diensten en technologieën om te voldoen aan de behoeften van onze internationale klanten.",
+        "presentation-text": "raz-Groupe is een toonaangevend bedrijf op het gebied van wereldwijde oplossingen. Wij bieden innovatieve diensten en technologieën om te voldoen aan de behoeften van onze internationale klanten.",
         "affiliated-title": "Gelieerde bedrijven",
         "card1-desc": "Een HTML-code verifier.",
         "card1-link": "Bezoek de site",
@@ -423,56 +517,53 @@
         "card5-link": "Bezoek de site",
         "card6-desc": "Een Markdown-naar-HTML-converter.",
         "card6-link": "Bezoek de site",
-        "footer-copy": "&copy; 2025 eraz-groupe. Alle rechten voorbehouden.",
+        "footer-copy": "&copy; 2025 raz-Groupe. Alle droits voorbehouden.",
         "dark-mode-on": "Donkere modus",
         "dark-mode-off": "Lichte modus"
       }
     };
 
-    let currentLang = 'fr';
+    let currentLang = localStorage.getItem('lang') || 'fr';
 
     // Fonction pour changer la langue
     function changeLanguage(lang) {
       currentLang = lang;
+      localStorage.setItem('lang', lang);
       document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
         if (translations[lang] && translations[lang][key]) {
           el.innerHTML = translations[lang][key];
         }
       });
-      // Met à jour l'attribut lang de la balise HTML
       document.documentElement.lang = lang;
-      // Mise à jour du texte du bouton de langue (affiche l'abréviation)
       document.getElementById('lang-btn').textContent = lang.toUpperCase();
-      // Actualise le texte du bouton dark mode selon l'état actuel
       updateDarkModeButton();
     }
 
     // Gestion du dropdown de langue
     const langBtn = document.getElementById('lang-btn');
     const langDropdown = document.getElementById('lang-dropdown');
-
     langBtn.addEventListener('click', () => {
+      const expanded = langBtn.getAttribute('aria-expanded') === 'true';
+      langBtn.setAttribute('aria-expanded', !expanded);
       langDropdown.style.display = langDropdown.style.display === 'block' ? 'none' : 'block';
     });
-
-    // Sélection d'une langue dans le dropdown
     langDropdown.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         changeLanguage(link.getAttribute('data-lang'));
         langDropdown.style.display = 'none';
+        langBtn.setAttribute('aria-expanded', 'false');
       });
     });
-
-    // Ferme le dropdown si l'utilisateur clique en dehors
     window.addEventListener('click', (e) => {
       if (!e.target.matches('#lang-btn')) {
         langDropdown.style.display = 'none';
+        langBtn.setAttribute('aria-expanded', 'false');
       }
     });
 
-    // Fonction pour mettre à jour le texte du bouton dark mode
+    // Mise à jour du texte du bouton dark mode
     function updateDarkModeButton() {
       const darkModeToggle = document.getElementById('dark-mode-toggle');
       if (document.body.classList.contains('dark')) {
@@ -482,28 +573,31 @@
       }
     }
 
-    // Gestion du dark mode
-    document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+    // Gestion du dark mode avec sauvegarde dans le localStorage et détection automatique
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    darkModeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark') ? 'enabled' : 'disabled');
       updateDarkModeButton();
     });
-
-    // Initialisation par défaut
+    if (!localStorage.getItem('darkMode')) {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+      }
+    } else {
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark');
+      }
+    }
+    updateDarkModeButton();
     changeLanguage(currentLang);
-    
-    
-  window.watsonAssistantChatOptions = {
-    integrationID: "f967b09a-bba4-41b5-8049-972050b065f1", // The ID of this integration.
-    region: "eu-gb", // The region your integration is hosted in.
-    serviceInstanceID: "96776aa2-c036-4512-b304-85878588e5c8", // The ID of your service instance.
-    onLoad: async (instance) => { await instance.render(); }
-  };
-  setTimeout(function(){
-    const t=document.createElement('script');
-    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-    document.head.appendChild(t);
-  });
 
+    // Menu mobile toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navUl = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('active');
+    });
   </script>
 </body>
 </html>
